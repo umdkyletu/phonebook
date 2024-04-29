@@ -1,6 +1,14 @@
 {%extends "base.html" %}{% block title %}Contacts{% endblock %}{% block content %}
+<h4 align = "center">Create New Contact</h4>
+<ul class = "list-group list-group-flush" id = "contacts"></ul>
+</ul>
 <form method = "POST">
-    <textarea name = "firtname" id="firtname" class = "form-control"></textarea>
+    <p>First Name</p>
+    <input name = "firtname" id="firtname" class = "form-control"/>
+    <p>Last Name</p>
+    <input name = "lastname" id="firtname" class = "form-control"/>
+    <p>Number</p>
+    <input name = "number" id="number" class = "form-control"/>
     <div align = "center">
         <button type="submit" class = "btn btn-primary">Create Contact</button>
     </div>

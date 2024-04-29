@@ -18,6 +18,7 @@ def login():
         if user:
             if check_password_hash(user.password,password):
                 flash('Logged in sucessfully!', category='success')
+                return redirect(url_for('views.contactlist'))
             else:
                 flash('Incorrect password. Please try again.', category='error')
         else: 
@@ -54,7 +55,7 @@ def signup():
             db.session.add(new_user)
             db.session.commit()
             flash("Account created!", category= 'success')
-            return redirect(url_for('views.home'))
+            return redirect(url_for('views.contactlist'))
 
 
             
