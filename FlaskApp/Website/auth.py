@@ -1,4 +1,7 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
+from werkzeug.security import generate_password_hash, check_password_hash
+from . import db
+from .models import User
 
 # define a blueprint for flask application
 auth = Blueprint("auth", __name__)
@@ -21,19 +24,26 @@ def logout():
 def signup():
     if request.method == 'POST':
         email = request.form.get('email')
-        firstname = request.form.get('firstName')
+        first_name = request.form.get('firstName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
         
         if len(email) < 4:
             flash('Email must contain at least 4 characters.', category='error')
-        elif len(firstname) < 2:
+        elif len(first_name) < 2:
             flash('First name must contain at least 2 characters.', category='error')
         elif password1 != password2:
             flash('Passwords do not match.', category='error')
         elif len(password1) < 7:
             flash('Password must contain at least 7 characters.', category='error')
         else:
-            flash('Account created!', category='success')
+            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method='pbkdf2:sha256'))
+            db.session.add(new_user)
+            db.session.commit()
+            flash("Account created!", category= 'success')
+            return redirect(url_for('views.home'))
+
+
+            
             
     return render_template("signUp.html")
