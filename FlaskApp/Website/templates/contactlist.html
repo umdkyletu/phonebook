@@ -1,14 +1,43 @@
 {%extends "base.html" %}{% block title %}Contacts{% endblock %}{% block content %}
+<!-- <h1 align = "center">Contacts</h1>
+<ul class = "list-group list-group-flush" id="contacts">
+    {% for contact in user.contacts %}
+    <li class = "list-group-item">{{ contact.first_name }}
+    <li class = "list-group-item">{{ contact.last_name }}</li>
+    <li class = "list-group-item">{{ contact.number }}</li>
+    <br\>
+    {% endfor %}
+</ul> -->
+
+<h4 align="center">Contacts</h4>
+<div class="container">
+  <div class="row">
+    {% for contact in user.contacts %}
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ contact.first_name }} {{ contact.last_name }}</h5>
+          <p class="card-text">Number: {{ contact.number }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
 <h4 align = "center">Create New Contact</h4>
 <ul class = "list-group list-group-flush" id = "contacts"></ul>
 </ul>
 <form method = "POST">
     <p>First Name</p>
-    <input name = "firtname" id="firtname" class = "form-control"/>
+    <input name = "first_name" id="first_name" class = "form-control"/>
     <p>Last Name</p>
-    <input name = "lastname" id="firtname" class = "form-control"/>
+    <input name = "last_name" id="last_name" class = "form-control"/>
     <p>Number</p>
     <input name = "number" id="number" class = "form-control"/>
+    <br/>
     <div align = "center">
         <button type="submit" class = "btn btn-primary">Create Contact</button>
     </div>
