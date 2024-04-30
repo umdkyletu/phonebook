@@ -1,0 +1,18 @@
+{%extends "base.html" %}{% block title %}Contacts{% endblock %}{% block content %}
+<h4 align = "center">Update Contact</h4>
+<ul class = "list-group list-group-flush" id = "contacts"></ul>
+</ul>
+<form action = "/update/{{ contact.id }}" method = "POST">
+    <p>First Name</p>
+    <input name = "first_name" id="first_name" class = "form-control" value = "{{ contact.first_name }}"/>
+    <p>Last Name</p>
+    <input name = "last_name" id="last_name" class = "form-control" value = "{{ contact.last_name }}"/>
+    <p>Number</p>
+    <input name = "number" id="number" class = "form-control" value = "{{ contact.number }}"/>
+    <br/>
+    <div align = "center">
+        <button type="submit" class = "btn btn-primary">Update Contact</button>
+    </div>
+</form>
+
+ {% endblock %}
