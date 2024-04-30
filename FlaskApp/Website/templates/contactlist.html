@@ -18,6 +18,10 @@
         <div class="card-body">
           <h5 class="card-title">{{ contact.first_name }} {{ contact.last_name }}</h5>
           <p class="card-text">Number: {{ contact.number }}</p>
+          <button type = "button" class="close" onClick ="deleteContact({{ contact.id }})">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        
         </div>
       </div>
     </div>

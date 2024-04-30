@@ -1,18 +1,14 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
 from .models import Contact
 from . import db
+import json
+
 
 
 # define a blueprint for flask application
 views = Blueprint("views", __name__)
 
-
-# whenever you go to / the stuff in home def will happen/appear
-# @views.route("/")
-# @login_required
-# def home():
-#     return render_template("base.html")
 
 @views.route("/",methods=['GET', 'POST'])
 @login_required
@@ -32,3 +28,15 @@ def contactlist():
             flash("Contact Added", category= 'success')
             
     return render_template("contactlist.html", user = current_user)
+
+@views.route('/delete-contact',methods=['POST'])
+def delete_contact():
+    contact = json.loads(request.data)
+    contactId = contact['contactId']
+    contact = Contact.query.get(contactId)
+    if contact:
+        if contact.user_id == current_user.id:
+            db.session.delete(contact)
+            db.session.commit()
+    
+    return jsonify({})
