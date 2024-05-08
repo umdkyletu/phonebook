@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_required, current_user
 from .models import Contact
+from .webforms import SearchForm
 from . import db
 import json
 
@@ -67,6 +68,16 @@ def update(id):
     else:
         return render_template("update.html", contact=contact, user=current_user)
 
-@views.route('/search', methods =["POST"])
+#pass stuff to navbar
+@views.context_processor
+def base():
+    form = SearchForm()
+    return dict(form = form)
+
+#search function
+@views.route('/search', methods = ["POST"])
 def search():
-    pass 
+    form = SearchForm()
+    if form.validate():
+        searched = form.searched.data 
+        return render_template("search.html", form = form, searched = searched)
