@@ -13,6 +13,7 @@ views = Blueprint("views", __name__)
 @views.route("/", methods=["GET", "POST"])
 @login_required
 def contactlist():
+    form = SearchForm()
     if request.method == "POST":
         first_name = request.form.get("first_name")
         last_name = request.form.get("last_name")
@@ -34,7 +35,7 @@ def contactlist():
             db.session.commit()
             flash("Contact Added", category="success")
 
-    return render_template("contactlist.html", user=current_user)
+    return render_template("contactlist.html", user=current_user, form=form)
 
 
 @views.route("/delete-contact", methods=["POST"])
@@ -68,11 +69,7 @@ def update(id):
     else:
         return render_template("update.html", contact=contact, user=current_user)
 
-#pass stuff to navbar
-@views.context_processor
-def base():
-    form = SearchForm()
-    return dict(form = form)
+
 
 #search function
 @views.route('/search', methods = ["POST"])
@@ -81,3 +78,7 @@ def search():
     if form.validate():
         searched = form.searched.data 
         return render_template("search.html", form = form, searched = searched)
+    
+@views.context_processor
+def inject_user():
+    return dict(user=current_user)
