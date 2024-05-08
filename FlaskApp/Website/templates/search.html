@@ -5,5 +5,16 @@
     <br/>
     <h2>You searched for...</h2>
     <p>{{ searched }}</p>
+    <br/>
+
+    {% for contact in contacts %}
+        <div class ="contact">
+            <p>First Name: {{ contact.first_name}}</p>
+            <p>Last Name: {{ contact.last_name}}</p>
+            <p>Number: {{ contact.number }}</p>
+        </div>
+        
+
+    {% endfor %}
 
 {% endblock %} 

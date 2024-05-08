@@ -75,9 +75,12 @@ def update(id):
 @views.route('/search', methods = ["POST"])
 def search():
     form = SearchForm()
+    contacts = Contact.query
     if form.validate():
         searched = form.searched.data 
-        return render_template("search.html", form = form, searched = searched)
+        contacts = contacts.filter(Contact.first_name.like('%' + searched + '%'))
+        contacts = contacts.order_by(Contact.first_name).all()
+        return render_template("search.html", form = form, searched = searched, contacts = contacts)
     
 @views.context_processor
 def inject_user():
