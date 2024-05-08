@@ -53,6 +53,7 @@ def delete_contact():
 
 @views.route("/update/<int:id>", methods=["GET", "POST"])
 def update(id):
+    form = SearchForm()
     contact = Contact.query.get(id)
     if request.method == "POST":
         contact.first_name = request.form.get("first_name")
@@ -67,7 +68,7 @@ def update(id):
         except:
             return "There was a problem updating"
     else:
-        return render_template("update.html", contact=contact, user=current_user)
+        return render_template("update.html", contact=contact, user=current_user, form = form)
 
 
 
