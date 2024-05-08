@@ -16,6 +16,7 @@
     <div class="col-md-4">
       <div class="card">
         <div class="card-body">
+          <img class="img-thumbnail" src="{{contact.photo}}" />
           <h5 class="card-title">{{ contact.first_name }} {{ contact.last_name }}</h5>
           <p class="card-text">Number: {{ contact.number }}</p>
           <button type = "button" class="close" onClick ="deleteContact({{ contact.id }})">
@@ -41,9 +42,13 @@
     <input name = "last_name" id="last_name" class = "form-control"/>
     <p>Number</p>
     <input name = "number" id="number" class = "form-control"/>
+    <br>
+    <p>Add Link to Photo for Contact</p>
+    <input name = "photo" id="photo" class = "form-control"/>
     <br/>
     <div align = "center">
         <button type="submit" class = "btn btn-primary">Create Contact</button>
     </div>
+    <br>
 </form>
 {% endblock %}

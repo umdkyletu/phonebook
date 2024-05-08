@@ -4,15 +4,19 @@
 </ul>
 <form action = "/update/{{ contact.id }}" method = "POST">
     <p>First Name</p>
-    <input name = "first_name" id="first_name" class = "form-control" value = "{{ contact.first_name }}"/>
+    <input name = "first_name" id="first_name" class = "form-control"/>
     <p>Last Name</p>
-    <input name = "last_name" id="last_name" class = "form-control" value = "{{ contact.last_name }}"/>
+    <input name = "last_name" id="last_name" class = "form-control"/>
     <p>Number</p>
-    <input name = "number" id="number" class = "form-control" value = "{{ contact.number }}"/>
+    <input name = "number" id="number" class = "form-control"/>
+    <br>
+    <p>Add Photo to Contact</p>
+    <input type="file" id="contact_photo" name="contact_photo" accept="image/png, image/jpeg" />
     <br/>
     <div align = "center">
-        <button type="submit" class = "btn btn-primary">Update Contact</button>
+        <button type="submit" class = "btn btn-primary">Create Contact</button>
     </div>
+    <br>
 </form>
 
  {% endblock %}
