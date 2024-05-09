@@ -49,7 +49,6 @@ Codemy.com. (May 21, 2020)._How To Update The Database - Python and Flask #9._[V
 Tech With Tim. (Feb 1, 2021). _Python Website Full Tutorial - Flask, Authentication, Databases & More_. [Video]. Youtube.[https://www.youtube.com/watch?v=dam0GPOAvVI](https://www.youtube.com/watch?v=dam0GPOAvVI)
 
 
-    (Python Website Full Tutorial - Flask, Authentication, Databases & More, Tech With Tim)
 
 
     We used this video to learn how to create the primary application that we wanted to create. It was also our first time using Flask, so we learned how to install the required modules, connect to a database using Flask, and code with Jinga. This taught us to authenticate users, make posts, and delete them.  
