@@ -7,7 +7,12 @@ db = SQLAlchemy()
 
 DB_NAME = "database.db"
 def create_app():
-    #creates flask app
+    """
+    creates and configures flask.
+    
+    Returns:
+        - flask: flask app.
+    """
     app = Flask(__name__)
     #encrypts cookies and session data
     app.config['SECRET_KEY'] = 'fhdgwefgifuejukf'
@@ -39,6 +44,12 @@ def create_app():
 
 
 def create_database(app):
+    """
+    creates database if it doesnt exist.
+    
+    Args:
+        - app (flask): flask app instance.
+    """
     with app.app_context():
         if not path.exists('Website/' + DB_NAME):
             db.create_all()
