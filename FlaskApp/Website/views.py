@@ -16,7 +16,7 @@ def contactlist():
     renders an html template for the contact list page. if post is received, adds new contact to database.
     
     Returns:
-        - str: html code of contact list page.
+        -  html code of contact list page.
     """
     form = SearchForm()
     if request.method == "POST":
@@ -100,7 +100,7 @@ def search():
     searches for contacts in database.
     
     Returns:
-        - str: html template for search results page.
+        - html template for search results page.
     """
     form = SearchForm()
     contacts = Contact.query

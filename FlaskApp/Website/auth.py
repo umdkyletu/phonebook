@@ -15,7 +15,7 @@ def login():
     renders login page.
     
     Returns:
-        - str: rendered html template for login page.
+        - rendered html template for login page.
         - redirect: redirects to contact list page if login successful.
     """    
     if request.method == 'POST':
@@ -55,7 +55,7 @@ def signup():
     renders signup page.
     
     Returns:
-        - str: rendered html template for signup page.
+        - rendered html template for signup page.
         - redirect: redirects to contact list page if signup successful.
     """
     if request.method == 'POST':
