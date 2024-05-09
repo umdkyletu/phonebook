@@ -8,14 +8,12 @@ from flask_login import login_required, logout_user, current_user, login_user
 # define a blueprint for flask application
 auth = Blueprint("auth", __name__)
 
-
 # whenever you go to / the stuff in home def will happen/appear
 @auth.route("/login", methods=['GET', 'POST'])
 def login():    
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password,password):
