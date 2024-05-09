@@ -21,6 +21,22 @@ def client(app):
 def runner(app):
     return app.test_cli_runner()
 
-def test_request_example(client):
+def test0(client):
     response = client.get("/login")
     assert b"<h3 style=\"text-align: center;\">Login</h3>" in response.data
+
+def test1(client):
+    response = client.get("/signup")
+    assert b" <h3 style=\"text-align: center;\">Sign Up</h3>" in response.data
+
+
+def test3(client):
+    response = client.get("/")
+    assert b"<h4 align=\"center\">Contacts</h4>" in response.data
+
+def test4(client):
+    response = client.get("/logout")
+    # Check that there was one redirect response.
+    assert len(response.history) == 1
+    # Check that the second request was to the index page.
+    assert response.request.path == "/login"
