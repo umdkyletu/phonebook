@@ -1,26 +1,51 @@
 {% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
   %}
-  <form method="POST">
-    <h3 align="center">Login</h3>
-    <div class="form-group">
-      <label for="email">Email Address:</label>
-      <input
-        type="email"
-        class="form-control"
-        id="email"
-        name="email"
-      />
+  <div class="container">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="my-div rounded-lg" style="margin: 20px; padding: 20px;">
+            <form method="POST">
+              <h3 style="text-align: center;">Login</h3>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="email">Email Address:</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      name="email"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="password">Password:</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      name="password"
+                    />
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        name="password"
-      />
-    </div>
-    <br />
-    <button type="submit" class="btn btn-primary">Login</button>
-  </form>
+    
   {% endblock %}
