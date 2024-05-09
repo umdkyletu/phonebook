@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Update Contact{% endblock %}
 {% block content %}
+<div class="container" style="margin: 20px; padding: 20px;">
+  <div class="row justify-content-center">
+   <div class="col-md-6">
     <h4 align="center">Update Contact</h4>
     <ul class="list-group list-group-flush" id="contacts"></ul>
     <form action="/update/{{ contact.id }}" method="POST">
@@ -19,4 +22,7 @@
         </div>
         <br>
     </form>
+    </div>
+  </div>
+</div>
 {% endblock %}
