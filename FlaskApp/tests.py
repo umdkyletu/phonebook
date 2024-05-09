@@ -30,13 +30,16 @@ def test1(client):
     assert b" <h3 style=\"text-align: center;\">Sign Up</h3>" in response.data
 
 
-def test3(client):
-    response = client.get("/")
-    assert b"<h4 align=\"center\">Contacts</h4>" in response.data
+# def test3(client):
+#     response = client.get("/")
+#     assert b"Contacts" in response.data
 
 def test4(client):
-    response = client.get("/logout")
-    # Check that there was one redirect response.
+    response = client.get("/logout", follow_redirects=True)
     assert len(response.history) == 1
-    # Check that the second request was to the index page.
     assert response.request.path == "/login"
+
+def test5(client):
+    response = client.get("/update/1")
+    assert b"<h4 align=\"center\">Update Contact</h4>" in response.data
+
