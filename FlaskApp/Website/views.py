@@ -5,7 +5,6 @@ from .webforms import SearchForm
 from . import db
 import json
 
-
 # define a blueprint for flask application
 views = Blueprint("views", __name__)
 
@@ -13,6 +12,12 @@ views = Blueprint("views", __name__)
 @views.route("/", methods=["GET", "POST"])
 @login_required
 def contactlist():
+    """
+    renders an html template for the contact list page. if post is received, adds new contact to database.
+    
+    Returns:
+        - str: html code of contact list page.
+    """
     form = SearchForm()
     if request.method == "POST":
         first_name = request.form.get("first_name")
@@ -40,6 +45,12 @@ def contactlist():
 
 @views.route("/delete-contact", methods=["POST"])
 def delete_contact():
+    """
+    deletes a contact from the database.
+    
+    Returns:
+        - dict: empty JSON response.
+    """
     contact = json.loads(request.data)
     contactId = contact["contactId"]
     contact = Contact.query.get(contactId)
@@ -53,6 +64,16 @@ def delete_contact():
 
 @views.route("/update/<int:id>", methods=["GET", "POST"])
 def update(id):
+    """
+    updates an already existing contact in the database.
+    
+    Args:
+        - id (int): id of contact that is to be updated.
+        
+    Returns:
+        - redirect: redirects to contact page.
+        - str: error message if a an error occurs while updating.
+    """
     form = SearchForm()
     contact = Contact.query.get(id)
     if request.method == "POST":
@@ -75,6 +96,12 @@ def update(id):
 #search function
 @views.route('/search', methods = ["POST"])
 def search():
+    """
+    searches for contacts in database.
+    
+    Returns:
+        - str: html template for search results page.
+    """
     form = SearchForm()
     contacts = Contact.query
     if form.validate():
@@ -85,4 +112,10 @@ def search():
     
 @views.context_processor
 def inject_user():
+    """
+    injects the current for jinja templates.
+    
+    Returns:
+        - dict: contains current user.
+    """
     return dict(user=current_user)

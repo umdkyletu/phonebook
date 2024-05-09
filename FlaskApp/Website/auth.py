@@ -10,7 +10,14 @@ auth = Blueprint("auth", __name__)
 
 # whenever you go to / the stuff in home def will happen/appear
 @auth.route("/login", methods=['GET', 'POST'])
-def login():    
+def login():
+    """
+    renders login page.
+    
+    Returns:
+        - str: rendered html template for login page.
+        - redirect: redirects to contact list page if login successful.
+    """    
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -30,13 +37,27 @@ def login():
 @auth.route("/logout")
 @login_required
 def logout():
-      logout_user()
-      return redirect(url_for('auth.login'))
+    """
+    logs out user.
+    
+    Returns:
+        - redirect: redirects to login page.
+        
+    """
+    logout_user()
+    return redirect(url_for('auth.login'))
 
 
 
 @auth.route("/signup", methods=['GET', 'POST'])
 def signup():
+    """
+    renders signup page.
+    
+    Returns:
+        - str: rendered html template for signup page.
+        - redirect: redirects to contact list page if signup successful.
+    """
     if request.method == 'POST':
         email = request.form.get('email')
         first_name = request.form.get('firstName')
